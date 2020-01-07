@@ -5,6 +5,10 @@ app.get('/', function (req, res) {
   res.send('Hello puto el que lee World!');
 });
 
+app.get('/pagecount', function (req, res) {
+  res.send('Hello puto el que lee World!');
+});
+
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!');
 });
