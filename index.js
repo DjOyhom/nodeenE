@@ -6,7 +6,7 @@ app.get('/', function (req, res) {
 });
 
 app.get('/pagecount', function (req, res) {
-  res.send('Hello puto el que lee World!');
+  res.send('Hellonaa mentira World!');
 });
 
 app.listen(8080, function () {
