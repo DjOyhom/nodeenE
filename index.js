@@ -2,7 +2,7 @@ var express = require('express');
 var app = express();
 
 app.get('/', function (req, res) {
-  res.send('Hi pipeline puto!');
+  res.send('Pipeline puto!');
 });
 
 app.get('/pagecount', function (req, res) {
