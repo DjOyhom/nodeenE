@@ -1,13 +1,13 @@
 try {
            timeout(time: 20, unit: 'MINUTES') {
-              node('nodejs') {
+  
                   stage('build') {
                     openshiftBuild(buildConfig: 'test', showBuildLogs: 'true')
                   }
                   stage('deploy') {
                     openshiftDeploy(deploymentConfig: 'test')
                   }
-                }
+                
            }
         } catch (err) {
            echo "in catch block"
