@@ -1,15 +1,6 @@
 try {
     timeout(time: 20, unit: 'MINUTES') {
-        podTemplate(label: 'nodejs', 
-            containers: [
-                containerTemplate(
-                    name: 'test',
-                    image: 'test',
-                    ttyEnabled: true,
-                    command: 'cat'
-                )  
-            ]
-        ) {
+        podTemplate{
             node('nodejs') {
                 stage('build') {
                     openshiftBuild(buildConfig: 'test', showBuildLogs: 'true')
