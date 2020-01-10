@@ -1,17 +1,28 @@
 try {
-           timeout(time: 20, unit: 'MINUTES') {
-                     node('nodejs') {
-                  stage('build') {
+    timeout(time: 20, unit: 'MINUTES') {
+        podTemplate(label: 'nodejs', 
+            containers: [
+                containerTemplate(
+                    name: 'test',
+                    image: 'test',
+                    ttyEnabled: true,
+                    command: 'cat'
+                )  
+            ]
+        ) {
+            node('nodejs') {
+                stage('build') {
                     openshiftBuild(buildConfig: 'test', showBuildLogs: 'true')
-                  }
-                  stage('deploy') {
-                    openshiftDeploy(deploymentConfig: 'test')
-                  }
                 }
-           }
-        } catch (err) {
-           echo "in catch block"
-           echo "Caught: ${err}"
-           currentBuild.result = 'FAILURE'
-           throw err
-        } 
+                stage('deploy') {
+                    openshiftDeploy(deploymentConfig: 'test')
+                }
+            }
+        }
+    }
+} catch (err) {
+    echo "in catch block"
+    echo "Caught: ${err}"
+    currentBuild.result = 'FAILURE'
+    throw err
+} 
