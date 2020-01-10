@@ -1,13 +1,11 @@
 try {
     timeout(time: 20, unit: 'MINUTES') {
-        podTemplate{
-            node('nodejs') {
-                stage('build') {
-                    openshiftBuild(buildConfig: 'test', showBuildLogs: 'true')
-                }
-                stage('deploy') {
-                    openshiftDeploy(deploymentConfig: 'test')
-                }
+        node('nodejs') {
+            stage('build') {
+                openshiftBuild(buildConfig: 'test', showBuildLogs: 'true')
+            }
+            stage('deploy') {
+                openshiftDeploy(deploymentConfig: 'test')
             }
         }
     }
