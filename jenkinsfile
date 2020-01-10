@@ -1,6 +1,6 @@
 try {
     timeout(time: 20, unit: 'MINUTES') {
-        node('nodejs') {
+        node('test') {
             stage('build') {
                 openshiftBuild(buildConfig: 'test', showBuildLogs: 'true')
             }
